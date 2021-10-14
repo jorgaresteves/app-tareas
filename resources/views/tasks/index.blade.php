@@ -35,9 +35,14 @@
                       @endif
                       </td>
                       <td>@if($task->is_complete == false)
-                      <a href="{{ route('tareas.status', $task->id) }}" class="btn btn-outline-success btn-sm">Completar</a>
+                      <a href="{{ route('tareas.status', $task->id) }}" class="btn btn-outline-success btn-sm"><ion-icon name="checkmark-circle-outline"></a>
                       @endif
                       <a href="{{ route('tareas.edit', $task->id) }}" class="btn btn-outline-info btn-sm">Editar</a>
+                      <form method="POST" action="{{ route('tareas.destroy', $task->id) }}">
+                          {{ csrf_field() }}
+                          {{ method_field('DELETE') }}
+                          <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                      </form>
                     </td>
                     </tr>
                     @endforeach
