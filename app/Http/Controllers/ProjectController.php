@@ -30,14 +30,18 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $project = new Project;
+        $tasks = Task::all();
+
 
         $project->name = $request->name;
         $project->status = $request->status;
         $project->description = $request->description;
+        $users = $request->user_id;
 
         $project->save();
+        $project->users()->sync($request->user_id);
 
-        return redirect()->back();
+        return redirect()->back()->with('users', $users);
     }
 
 

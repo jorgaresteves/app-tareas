@@ -19,14 +19,7 @@ class Project extends Model
 
     public function users(){
         
-        return $this->belongsToMany(User::class);
-
-        $user = User::find(1);
-
-        foreach ($user->projects as $project){
-
-            echo $project->pivot->created_at;
-        }
+        return $this->belongsToMany(User::class, 'project_user', 'project_id', 'user_id');
 
     }
 }

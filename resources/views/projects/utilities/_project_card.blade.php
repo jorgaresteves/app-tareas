@@ -24,6 +24,9 @@
 
 		<h5>{{ $project->name }}</h5>
 		<p>{{ $project->description }}</p>
+		@foreach($project->users as $user)
+		<p>{{ $user->name }}</p>
+		@endforeach
 		<hr>
 
 		<a href="" data-toggle="modal" data-target="#modalCrearTarea_{{ $project->id }}" class="btn btn-outline-dark btn-sm mb-3">Crear Tarea</a>
@@ -32,7 +35,10 @@
 		@foreach($project->tasks as $task)
 			<div class="d-flex align-items-center justify-content-between">
 				<div style="width:60%;">
-					<p class="mb-0">{{ $task->title }}</p>
+					<p class="mb-1">{{ $task->title }}</p>
+					
+					<p class="mb-0">A cargo: {{ $task->user->name }}</p>
+					
 					@if($task->is_complete == false)
                       <span class="badge badge-warning">Pendiente</span>
                       @else
@@ -96,7 +102,7 @@
 					<div class="form-group">
 				    <label for="exampleFormControlSelect1">Selecciona usuario</label>
 				    <select class="form-control" id="exampleFormControlSelect1" name="user_id">
-				    	@foreach($users as $user)
+				    	@foreach($project->users as $user)
 				      <option value="{{ $user->id }}">{{ $user->name }}</option>
 				        @endforeach
 				    </select>

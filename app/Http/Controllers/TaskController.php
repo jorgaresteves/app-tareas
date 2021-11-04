@@ -18,7 +18,9 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
 
-        return view('tasks.index')->with('tasks', $tasks);
+        $users = User::all();
+
+        return view('tasks.index')->with('tasks', $tasks)->with('users', $users);
 
     }
 
