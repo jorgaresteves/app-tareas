@@ -41,4 +41,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function projects(){
+        
+        return $this->belongsToMany(Project::class);
+
+        $user = User::find(1);
+
+        foreach ($user->projects as $project){
+
+            $project = User::find(1)->projects()->orderBy('name')->get();
+        }
+
+    }
+
+    public function tasks(){
+
+        return $this->hasOne(Task::class, 'id', 'user_id');
+        
+
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\User;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -12,13 +14,17 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
 
-        return view('projects.index')->with('projects', $projects);
+        $users = User::all();
+
+        $tasks = Task::all();
+
+        return view('projects.index')->with('projects', $projects)->with('users', $users)->with('tasks', $tasks);
     }
 
     
     public function create()
     {
-        //
+        
     }
 
     public function store(Request $request)

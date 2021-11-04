@@ -48,12 +48,12 @@
                           {{ csrf_field() }}
                           {{ method_field('DELETE') }}
                           <button type="submit" data-toggle="tooltip" data-placement="top" title="Borrar" class="btn btn-danger btn-sm"><ion-icon name="trash-outline"></ion-icon></button>
+                      </form>
                       </div>
                 </div>
 		@endforeach
 
 		<hr>	
-		<p class="mb-0">Creado el: {{ Carbon\Carbon::parse($project->created_at)->diffForHumans() }}</p>
 
 		<p>Creado el: {{ Carbon\Carbon::parse($project->created_at)->format('d M Y H:i') }}</p>
 
@@ -77,6 +77,8 @@
 
         <input type="hidden" name="project_id" value="{{ $project->id }}" readonly="">
 
+        <input type="hidden" name="user_id" value="{{ $project->id }}" readonly="">
+
         <div class="form-group">
 						<label>Titulo de Tarea</label>
 						<input type="text" name="title" class="form-control" required="">
@@ -91,6 +93,14 @@
 						<label>Descripción</label>
 						<textarea class="form-control" name="description" rows="5"></textarea>
 					</div>
+					<div class="form-group">
+				    <label for="exampleFormControlSelect1">Selecciona usuario</label>
+				    <select class="form-control" id="exampleFormControlSelect1" name="user_id">
+				    	@foreach($users as $user)
+				      <option value="{{ $user->id }}">{{ $user->name }}</option>
+				        @endforeach
+				    </select>
+				  </div>
 
       </div>
       <div class="modal-footer">

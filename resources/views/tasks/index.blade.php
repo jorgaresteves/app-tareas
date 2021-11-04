@@ -17,6 +17,7 @@
                       <th scope="col">Título</th>
                       <th scope="col">Fecha de entrega</th>
                       <th scope="col">Descripción</th>
+                      <th scope="col">ID de Admin</th>
                       <th scope="col">Estado</th>
                       <th scope="col">Acciones</th>
                     </tr>
@@ -28,6 +29,7 @@
                       <td>{{ $task->title }}</td>
                       <td>{{ $task->deadline }}</td>
                       <td>{{ $task->description }}</td>
+                      <td>{{ $task->user_id }}</td>
                       <td>@if($task->is_complete == false)
                       <span class="badge badge-warning">Pendiente</span>
                       @else
